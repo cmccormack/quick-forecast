@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+$bg-color: #282c34;
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Roboto, sans-serif;
+  background-color: $bg-color;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+img {
+  animation: spin 5s linear infinite;
+}
+
+#title-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+
+  #title {
+    color: #fff;
+    text-align: center;
+  }
+}
+
+#location-form {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .form-row {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+
+    input {
+      width: 200px;
+    }
+  }
+
+}
