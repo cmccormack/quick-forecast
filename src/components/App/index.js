@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import "./App.scss";
 import Table from "../Table";
-import "../../assets/images/react-logo.png";
+import "../../assets/images/moon.png";
 
 const App = props => {
   const [loc, setLoc] = useState("");
@@ -34,13 +34,13 @@ const App = props => {
   return (
     <>
       <div id="title-wrapper">
-        <img src="assets/images/react-logo.png" />
+        <img src="assets/images/moon.png" />
         <h1 id="title">Get Weather in your Area!</h1>
       </div>
       <form id="location-form">
         <div className="form-row">
           <label htmlFor="location-input">Enter Location:</label>
-          <input type="text" id="location-input" />
+          <input type="text" id="location-input" disabled />
         </div>
       </form>
       {data && <Table data={data} />}
