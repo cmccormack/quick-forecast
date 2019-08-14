@@ -12,7 +12,7 @@
     "build:dev:vis": "webpack --mode development --env.visualize",
     "devserver": "webpack-dev-server",
     "devserver:vis": "webpack-dev-server --env.visualize",
-    "start": "cd backend && npm run start",
+    "start": "npm run build && cd backend && npm run start",
     "start:dev": "cd backend && npm run start:dev"
   },
   "keywords": [

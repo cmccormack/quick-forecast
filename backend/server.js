@@ -7,6 +7,8 @@ app.set("port", process.env.PORT || 3000);
 
 const routes = require("./routes");
 
+app.use(express.static(path.resolve(__dirname, "../dist")));
+
 app.use(routes);
 
 const server = app.listen(app.get("port"), err => {
