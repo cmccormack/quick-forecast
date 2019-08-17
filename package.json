@@ -73,5 +73,13 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmccormack/quick-forecast.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cmccormack/quick-forecast/issues"
+  },
+  "homepage": "https://github.com/cmccormack/quick-forecast#readme"
 }
