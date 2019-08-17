@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import moment from "moment";
 
 const dataHeaders = [
   { name: "Date" },
-  { name: "Moon Phase", width: "40%" },
+  { name: "Moon Phase", width: "34%" },
   { name: "Sunrise" },
   { name: "Sunset" },
 ];
@@ -24,7 +25,7 @@ const getMoonPhase = value => {
   if (value >= 0.5 && value < 0.55) {
     return "Full";
   }
-  if (value >= 0.625 && value < 0.75) {
+  if (value >= 0.55 && value < 0.75) {
     return "Waning Gibbous";
   }
   if (value >= 0.75 && value < 0.875) {
@@ -33,30 +34,39 @@ const getMoonPhase = value => {
   return "Waning Crescent";
 };
 
-const getDate = date => new Date(date * 1000);
-
-const get24HourTime = date =>
-  `${String(date.getHours()).padStart(2, "0")}:${String(
-    date.getMinutes()
-  ).padStart(2, "0")}`;
-
-const getTime = date => {
-  return get24HourTime(getDate(date));
+const moonEmojis = {
+  "New Moon": "🌑",
+  "Waxing Crescent": "🌒",
+  "First Quarter": "🌓",
+  "Waxing Gibbous": "🌔",
+  Full: "🌕",
+  "Waning Gibbous": "🌖",
+  "Last Quarter": "🌗",
+  "Waning Crescent": "🌘",
 };
+
+const getDate = date => moment(date * 1000);
+
+const get24HourTime = date => getDate(date).format("HH:mm");
+
+const getTime = date => get24HourTime(date);
 
 const StyledRow = styled("div")`
   display: flex;
   flex-direction: row;
   background-color: #222;
   color: white;
-  height: 20px;
-  font-size: 12px;
+  height: 2.4rem;
+  font-size: 1rem;
   margin: 2px 0;
+  word-wrap: break-word;
 `;
 
 const StyledTitleRow = styled(StyledRow)`
   background-color: #445;
-  font-weight: 600;
+  font-weight: 200;
+  font-size: 1.1rem;
+  height: 30px;
 `;
 
 const StyledTable = styled("div")`
@@ -72,15 +82,15 @@ const StyledCol = styled("div")`
   flex-grow: 1;
   justify-content: ${props => props.align || "flex-start"};
   align-items: center;
-  width: ${props => props.width || "20%"};
+  width: ${props => props.width || "22%"};
 `;
 
 const List = props => {
   const data = props.data.daily.data;
 
-  data.forEach(
-    row => (row.localeDate = new Date(row.time * 1000).toLocaleDateString())
-  );
+  data.forEach(row => (row.localeDate = getDate(row.time)));
+
+  console.log(moment(data[0].time * 1000).format());
 
   console.log(data);
   return (
@@ -98,12 +108,17 @@ const List = props => {
         ))}
       </StyledTitleRow>
       {data.map((row, i) => (
-        <StyledRow key={row.time} className="data-table-row" evenrow={i % 2}>
+        <StyledRow key={row.time} className="data-table-row">
           <StyledCol className="data-table-col" align="center">
-            {row.localeDate}
+            {row.localeDate.format("MMM Do")}
           </StyledCol>
-          <StyledCol className="data-table-col" align="center" width="40%">
-            {getMoonPhase(row.moonPhase)}
+          <StyledCol
+            className="data-table-col"
+            align="center"
+            title={getMoonPhase(row.moonPhase)}
+            width="34%"
+          >
+            {moonEmojis[getMoonPhase(row.moonPhase)]}
           </StyledCol>
           <StyledCol className="data-table-col" align="center">
             {getTime(row.sunriseTime)}

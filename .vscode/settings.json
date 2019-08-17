@@ -4,9 +4,5 @@
     "editor.formatOnSave": true
   },
   "eslint.autoFixOnSave": true,
-  "cSpell.ignoreWords": [
-    "crossenv",
-    "devserver",
-    "vis"
-  ],
+  "cSpell.ignoreWords": ["apirouter", "crossenv", "devserver", "vis"]
 }

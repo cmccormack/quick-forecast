@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 $bg-color: #282c34;
 
@@ -6,7 +6,8 @@ $bg-color: #282c34;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
 }
@@ -18,6 +19,11 @@ body {
   align-items: center;
   font-family: Roboto, sans-serif;
   background-color: $bg-color;
+  font-size: 1.3rem;
+
+  @media screen and (max-width: 480px) {
+    font-size: 1rem;
+  }
 }
 
 @keyframes spin {
@@ -64,5 +70,4 @@ img {
       width: 60%;
     }
   }
-
 }
