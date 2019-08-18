@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import moment from "moment";
 
+import Col from "./Col";
+
 const dataHeaders = [
   { name: "Date" },
   { name: "Moon Phase", width: "34%" },
@@ -69,20 +71,11 @@ const StyledTitleRow = styled(StyledRow)`
   height: 30px;
 `;
 
-const StyledTable = styled("div")`
+const StyledList = styled("div")`
   background-color: #333;
   padding: 6px;
   display: flex;
   flex-direction: column;
-`;
-
-const StyledCol = styled("div")`
-  margin: 3px;
-  display: flex;
-  flex-grow: 1;
-  justify-content: ${props => props.align || "flex-start"};
-  align-items: center;
-  width: ${props => props.width || "22%"};
 `;
 
 const List = props => {
@@ -90,45 +83,42 @@ const List = props => {
 
   data.forEach(row => (row.localeDate = getDate(row.time)));
 
-  console.log(moment(data[0].time * 1000).format());
-
-  console.log(data);
   return (
-    <StyledTable className="data-table">
+    <StyledList className="data-table">
       <StyledTitleRow className="data-table-row">
         {dataHeaders.map(({ name, width }) => (
-          <StyledCol
+          <Col
             key={name}
             className="data-table-col"
             align="center"
             width={width}
           >
             {name}
-          </StyledCol>
+          </Col>
         ))}
       </StyledTitleRow>
       {data.map((row, i) => (
         <StyledRow key={row.time} className="data-table-row">
-          <StyledCol className="data-table-col" align="center">
+          <Col className="data-table-col" align="center">
             {row.localeDate.format("MMM Do")}
-          </StyledCol>
-          <StyledCol
+          </Col>
+          <Col
             className="data-table-col"
             align="center"
             title={getMoonPhase(row.moonPhase)}
             width="34%"
           >
             {moonEmojis[getMoonPhase(row.moonPhase)]}
-          </StyledCol>
-          <StyledCol className="data-table-col" align="center">
+          </Col>
+          <Col className="data-table-col" align="center">
             {getTime(row.sunriseTime)}
-          </StyledCol>
-          <StyledCol className="data-table-col" align="center">
+          </Col>
+          <Col className="data-table-col" align="center">
             {getTime(row.sunsetTime)}
-          </StyledCol>
+          </Col>
         </StyledRow>
       ))}
-    </StyledTable>
+    </StyledList>
   );
 };
 

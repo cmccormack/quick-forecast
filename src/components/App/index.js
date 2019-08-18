@@ -14,8 +14,12 @@ const App = props => {
       console.log("geolocation API not available.");
     }
 
+    console.log("Calling browser location API...");
     navigator.geolocation.getCurrentPosition(({ coords }) => {
       const { latitude, longitude } = coords;
+      console.log(
+        `Location api call successful. Latitude/Longitude: ${latitude}/${longitude}`
+      );
       setLoc(`${latitude},${longitude}`);
     });
   }, []);
