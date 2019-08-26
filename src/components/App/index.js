@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 import "./App.scss";
-import List from "../List";
+import WeekList from "../WeekList";
 import "../../assets/images/moon.png";
 
 const App = props => {
@@ -47,7 +47,7 @@ const App = props => {
           <input type="text" id="location-input" disabled />
         </div>
       </form>
-      {data && <List data={data} />}
+      {data && <WeekList data={data} />}
     </>
   );
 };
