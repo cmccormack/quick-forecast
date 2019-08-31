@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 import "./App.scss";
 import WeekList from "../WeekList";
+import DayList from "../DayList";
 import "../../assets/images/moon.png";
 
 const App = props => {
@@ -48,6 +49,7 @@ const App = props => {
         </div>
       </form>
       {data && <WeekList data={data} />}
+      {data && <DayList data={data} />}
     </>
   );
 };
