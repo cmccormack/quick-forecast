@@ -26,6 +26,7 @@ const StyledList = styled("div")`
   padding: 6px;
   display: flex;
   flex-direction: column;
+  width: ${props => props.width || "inherit"};
 `;
 
 const List = props => {

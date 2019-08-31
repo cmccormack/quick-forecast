@@ -26,6 +26,10 @@ const StyledList = styled("div")`
   padding: 6px;
   display: flex;
   flex-direction: column;
+  .data-table-row:not(.data-table-header):nth-child(odd) {
+    background-color: #2a2a2a;
+  }
+  width: ${props => props.width || "auto"};
 `;
 
 const List = props => {
@@ -34,8 +38,8 @@ const List = props => {
   data.forEach(row => (row.localeDate = getDate(row.time)));
 
   return (
-    <StyledList className="data-table">
-      <StyledTitleRow className="data-table-row">
+    <StyledList className="data-table" width="400px">
+      <StyledTitleRow className="data-table-row data-table-header">
         {dataHeaders.map(({ name, width }) => (
           <Col
             key={name}

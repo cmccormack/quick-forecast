@@ -26,9 +26,11 @@ const App = props => {
   }, []);
 
   useEffect(() => {
+    // let loc = null;
     if (!loc) {
       return;
     }
+    console.log("Calling forecast api...");
     fetch(`/api/forecast/${loc}`)
       .then(res => res.json())
       .then(json => {
